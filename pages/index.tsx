@@ -9,17 +9,15 @@ import styles from "../styles/Home.module.css";
 import fs from "fs";
 import matter from "gray-matter";
 
-type PostProps = {
-  props: {
-    posts: {
-      slug: string;
-      data: {
-        [key: string]: any;
-      };
-    }[];
-  };
+type PageProps = {
+  posts: {
+    slug: string;
+    data: {
+      [key: string]: any;
+    };
+  }[];
 };
-export const getStaticProps = (): PostProps => {
+export const getStaticProps = (): PageProps => {
   const files = fs.readdirSync("posts");
   const posts = ([] = files.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
@@ -29,21 +27,11 @@ export const getStaticProps = (): PostProps => {
     return { slug, data };
   }));
   return {
-    props: {
-      posts,
-    },
+    posts,
   };
 };
 
-const Home: NextPage = (getStaticProps) => {
-  //console.log(getStaticProps.posts[0].slug);
-  console.log(getStaticProps.posts[0].data.title);
-
-  const title: String = getStaticProps.posts[0].data.title
-  const date: String = getStaticProps.posts[0].data.date
-  const description:String = getStaticProps.posts[0].data.description
-  //console.log(getStaticProps.posts[1]);
-  //console.log(getStaticProps);
+const Home: React.FC<PageProps> = (props) => {
   return (
     <div>
       <Head>
@@ -59,7 +47,11 @@ const Home: NextPage = (getStaticProps) => {
             東京在住フリーランスエンジニアのブログ
           </h1>
         </div>
-        <Card title={title} date={date} description={description} />
+        <Card
+          title={props.posts[0].data.title}
+          date={props.posts[0].data.title}
+          description={props.posts[0].data.description}
+        />
       </main>
       <Footer />
     </div>
