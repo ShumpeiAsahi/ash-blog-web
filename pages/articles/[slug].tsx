@@ -1,16 +1,8 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-  PreviewData,
-} from "next";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import fs from "fs";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
-import { ParsedUrlQuery } from "querystring";
 
 type PageProps = {
   content: string;
@@ -18,7 +10,9 @@ type PageProps = {
 };
 
 type PathParams = {
-  slug: string;
+  params: {
+    slug: string;
+  };
 };
 
 export const getStaticPaths = async () => {
@@ -34,8 +28,10 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ slug }: PathParams) => {
-  const file = fs.readFileSync(`posts/${slug}.md`, "utf-8");
+export const getStaticProps = async (paths: PathParams) => {
+  console.log("paths:", paths);
+  console.log("slug:", paths.params.slug);
+  const file = fs.readFileSync(`posts/${paths.params.slug}.md`, "utf-8");
   const { data, content } = matter(file);
   const post = {
     data: data,
@@ -44,11 +40,12 @@ export const getStaticProps = async ({ slug }: PathParams) => {
   return { props: post };
 };
 
-const ArticlePage: React.FC<PageProps> = ({ content, data }: PageProps) => {
+const ArticlePage: React.FC<PageProps> = ({ content, data }) => {
   return (
     <>
       <Header />
-      <h1>{data.title}</h1>｝<ReactMarkdown>{content}</ReactMarkdown>
+      <h1>{data.title}</h1>
+      <ReactMarkdown>{content}</ReactMarkdown>
       <Footer />
     </>
   );

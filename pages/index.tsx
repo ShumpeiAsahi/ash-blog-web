@@ -17,7 +17,7 @@ type PageProps = {
     };
   }[];
 };
-export const getStaticProps = (): PageProps => {
+export const getStaticProps = () => {
   const files = fs.readdirSync("posts");
   const posts = ([] = files.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
@@ -26,12 +26,10 @@ export const getStaticProps = (): PageProps => {
     const { data } = matter(fileContent);
     return { slug, data };
   }));
-  return {
-    posts,
-  };
+  return { props: { posts } };
 };
 
-const Home: React.FC<PageProps> = (props) => {
+const Home: React.FC<PageProps> = ({ posts }) => {
   return (
     <div>
       <Head>
@@ -48,9 +46,9 @@ const Home: React.FC<PageProps> = (props) => {
           </h1>
         </div>
         <Card
-          title={props.posts[0].data.title}
-          date={props.posts[0].data.title}
-          description={props.posts[0].data.description}
+          title={posts[0].data.title}
+          date={posts[0].data.title}
+          description={posts[0].data.description}
         />
       </main>
       <Footer />
