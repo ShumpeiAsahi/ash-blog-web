@@ -7,8 +7,10 @@ type Props = {
 export const Post = (props: Props) => {
   return (
     <>
-      <h1>{props.title}</h1>
-      <ReactMarkdown>{props.content}</ReactMarkdown>
+      <h1 className="text-xl font-bold">{props.title}</h1>
+      <div>
+        <ReactMarkdown>{props.content}</ReactMarkdown>
+      </div>
     </>
   );
 };
