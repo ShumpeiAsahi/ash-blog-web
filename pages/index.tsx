@@ -1,10 +1,7 @@
-import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { Card } from "../components/Card";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import styles from "../styles/Home.module.css";
 
 import fs from "fs";
 import matter from "gray-matter";
@@ -42,14 +39,20 @@ const Home: React.FC<PageProps> = ({ posts }) => {
       <main>
         <div>
           <h1 className="text-lg font-bold my-16 text-center">
-            東京在住フリーランスエンジニアのブログ
+            東京在住エンジニアのブログ
           </h1>
         </div>
-        <Card
-          title={posts[0].data.title}
-          date={posts[0].data.title}
-          description={posts[0].data.description}
-        />
+        {posts.map((post) => {
+          return (
+            <Card
+              key={post.slug}
+              slug={post.slug}
+              title={post.data.title}
+              date={post.data.title}
+              description={post.data.description}
+            />
+          );
+        })}
       </main>
       <Footer />
     </div>

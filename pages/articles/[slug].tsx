@@ -1,5 +1,6 @@
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
+import { Post } from "../../components/Post";
 import fs from "fs";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
@@ -44,8 +45,7 @@ const ArticlePage: React.FC<PageProps> = ({ content, data }) => {
   return (
     <>
       <Header />
-      <h1>{data.title}</h1>
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <Post title={data.title} content={content} />
       <Footer />
     </>
   );

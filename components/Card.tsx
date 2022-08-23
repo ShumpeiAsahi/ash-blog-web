@@ -2,20 +2,19 @@ import Link from "next/link";
 import Image from "next/image";
 
 type CardProps = {
-  title: String;
-  date: String;
-  description: String | null;
+  slug: string;
+  title: string;
+  date: string;
+  description: string | null;
 };
 export const Card = (props: CardProps) => {
   return (
-    <Link href="/">
+    <Link href={`/articles/${props.slug}`}>
       <a className="mx-4">
         <div>
           <p>{props.date}</p>
           <div>
-            <span className="font-bold text-lg">
-            {props.title}
-            </span>
+            <span className="font-bold text-lg">{props.title}</span>
             <Image
               src="/japanese-style.jpg"
               width="80"
