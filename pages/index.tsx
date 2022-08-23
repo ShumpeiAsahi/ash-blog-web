@@ -36,22 +36,25 @@ const Home: React.FC<PageProps> = ({ posts }) => {
       <Header />
 
       <main>
-        <div>
-          <h1 className="text-lg font-bold my-16 text-center">
-            東京在住エンジニアのブログ
-          </h1>
+        <div className="w-full md:w-8/12 mx-auto">
+          <div>
+            <h1 className="text-lg font-bold my-16 text-center">
+              東京在住エンジニアのブログ
+            </h1>
+          </div>
+          {posts.map((post) => {
+            return (
+              <Card
+                key={post.slug}
+                slug={post.slug}
+                title={post.data.title}
+                date={post.data.date}
+                description={post.data.description}
+                thumbnail={post.data.thumbnail}
+              />
+            );
+          })}
         </div>
-        {posts.map((post) => {
-          return (
-            <Card
-              key={post.slug}
-              slug={post.slug}
-              title={post.data.title}
-              date={post.data.date}
-              description={post.data.description}
-            />
-          );
-        })}
       </main>
       <Footer />
     </div>
