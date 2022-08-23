@@ -2,7 +2,6 @@ import Head from "next/head";
 import { Card } from "../components/Card";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-
 import fs from "fs";
 import matter from "gray-matter";
 
@@ -48,7 +47,7 @@ const Home: React.FC<PageProps> = ({ posts }) => {
               key={post.slug}
               slug={post.slug}
               title={post.data.title}
-              date={post.data.title}
+              date={post.data.date}
               description={post.data.description}
             />
           );
