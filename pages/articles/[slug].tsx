@@ -45,7 +45,7 @@ const ArticlePage: React.FC<PageProps> = ({ content, data }) => {
   return (
     <>
       <Header />
-      <Post title={data.title} content={content} />
+      <Post title={data.title} content={content} thumbnail={data.thumbnail} />
       <Footer />
     </>
   );

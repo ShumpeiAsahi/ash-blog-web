@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import fs from "fs";
 import matter from "gray-matter";
+import { Pagination } from "../components/Pagination";
 
 type PageProps = {
   posts: {
@@ -18,7 +19,6 @@ export const getStaticProps = () => {
   const posts = ([] = files.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
     const fileContent = fs.readFileSync(`posts/${fileName}`, "utf-8");
-    console.log(fileContent);
     const { data } = matter(fileContent);
     return { slug, data };
   }));
@@ -57,6 +57,7 @@ const Home: React.FC<PageProps> = ({ posts }) => {
         </div>
       </main>
       <Footer />
+      <Pagination totalCount={20} />
     </div>
   );
 };
