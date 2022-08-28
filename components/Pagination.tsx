@@ -1,7 +1,11 @@
 import Router from "next/router";
 import Link from "next/link";
 
-export const Pagination = ({ totalCount }) => {
+type Args = {
+  totalCount: number;
+};
+
+export const Pagination = ({ totalCount } : Args) => {
   const PER_PAGE = 5;
 
   const range = (start: number, end: number) =>

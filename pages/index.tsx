@@ -57,7 +57,7 @@ const Home: React.FC<PageProps> = ({ posts }) => {
         </div>
       </main>
       <Footer />
-      <Pagination totalCount={20} />
+      <Pagination totalCount={posts.length} />
     </div>
   );
 };
