@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { Card } from "../components/Card";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
+import { Card } from "../../components/Card";
+import { Footer } from "../../components/Footer";
+import { Header } from "../../components/Header";
 import fs from "fs";
 import matter from "gray-matter";
-import { Pagination } from "../components/Pagination";
+import { Pagination } from "../../components/Pagination";
 
 type PageProps = {
   posts: {
@@ -14,7 +14,35 @@ type PageProps = {
     };
   }[];
 };
-export const getStaticProps = () => {
+
+type PathParams = {
+  params: {
+    page: number;
+  };
+};
+
+const PAGE_SIZE = 2;
+
+const range = (start: number, end: number) =>
+  [...Array(end - start + 1)].map((_, i) => start + i);
+
+export const getStaticPaths = async () => {
+  const files = fs.readdirSync("posts");
+  const count = files.length;
+
+  const paths = range(1, Math.ceil(count / PAGE_SIZE)).map((i) => ({
+    params: { page: i.toString() },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = (paths: PathParams) => {
+  const current_page = paths.params.page;
+  console.log("page", current_page);
   const files = fs.readdirSync("posts");
   const posts = ([] = files.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
@@ -22,10 +50,22 @@ export const getStaticProps = () => {
     const { data } = matter(fileContent);
     return { slug, data };
   }));
-  return { props: { posts } };
+
+  const pages = range(1, Math.ceil(posts.length / PAGE_SIZE));
+
+  const sortedPosts = posts.sort((postA, postB) =>
+    new Date(postA.data.date) > new Date(postB.data.date) ? -1 : 1
+  );
+
+  const slicedPosts = sortedPosts.slice(
+    PAGE_SIZE * (current_page - 1),
+    PAGE_SIZE * current_page
+  );
+
+  return { props: { posts: slicedPosts, pages, current_page } };
 };
 
-const Home: React.FC<PageProps> = ({ posts }) => {
+const Page: React.FC<PageProps> = ({ posts }) => {
   return (
     <div>
       <Head>
@@ -62,4 +102,4 @@ const Home: React.FC<PageProps> = ({ posts }) => {
   );
 };
 
-export default Home;
+export default Page;

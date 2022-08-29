@@ -29,9 +29,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (paths: PathParams) => {
-  console.log("paths:", paths);
-  console.log("slug:", paths.params.slug);
+export const getStaticProps = (paths: PathParams) => {
   const file = fs.readFileSync(`posts/${paths.params.slug}.md`, "utf-8");
   const { data, content } = matter(file);
   const post = {
