@@ -1,25 +1,17 @@
-import Router from "next/router";
 import Link from "next/link";
 
-type Args = {
-  totalCount: number;
+type Props = {
+  pages: number;
+  current_page: number;
 };
-
-export const Pagination = ({ totalCount } : Args) => {
-  const PER_PAGE = 5;
-
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
-
+export const Pagination = (props: Props) => {
   return (
-    <ul>
-      {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
-        <li key={index}>
-          <Link href={`/`}>
-            <a>{number}</a>
-          </Link>
-        </li>
+    <div>
+      {props.pages.map((page) => (
+        <Link href={`/page/${page}`} key={page}>
+          <a className={`${props.current_page == page && "font-bold"}`}>{page}</a>
+        </Link>
       ))}
-    </ul>
+    </div>
   );
 };

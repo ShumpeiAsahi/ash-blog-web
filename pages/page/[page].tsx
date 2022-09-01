@@ -13,6 +13,8 @@ type PageProps = {
       [key: string]: any;
     };
   }[];
+  pages: number;
+  current_page: number;
 };
 
 type PathParams = {
@@ -65,7 +67,7 @@ export const getStaticProps = (paths: PathParams) => {
   return { props: { posts: slicedPosts, pages, current_page } };
 };
 
-const Page: React.FC<PageProps> = ({ posts }) => {
+const Page: React.FC<PageProps> = ({ posts, pages, current_page }) => {
   return (
     <div>
       <Head>
@@ -96,8 +98,8 @@ const Page: React.FC<PageProps> = ({ posts }) => {
           })}
         </div>
       </main>
+      <Pagination pages={pages} current_page={current_page} />
       <Footer />
-      <Pagination totalCount={posts.length} />
     </div>
   );
 };
