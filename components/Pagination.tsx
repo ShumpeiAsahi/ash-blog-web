@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type Props = {
-  pages: number;
+  pages: number[];
   current_page: number;
 };
 export const Pagination = (props: Props) => {
@@ -9,7 +9,9 @@ export const Pagination = (props: Props) => {
     <div>
       {props.pages.map((page) => (
         <Link href={`/page/${page}`} key={page}>
-          <a className={`${props.current_page == page && "font-bold"}`}>{page}</a>
+          <a className={`${props.current_page == page && "font-bold"}`}>
+            {page}
+          </a>
         </Link>
       ))}
     </div>

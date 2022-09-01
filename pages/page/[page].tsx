@@ -13,7 +13,7 @@ type PageProps = {
       [key: string]: any;
     };
   }[];
-  pages: number;
+  pages: number[];
   current_page: number;
 };
 
@@ -44,7 +44,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = (paths: PathParams) => {
   const current_page = paths.params.page;
-  console.log("page", current_page);
   const files = fs.readdirSync("posts");
   const posts = ([] = files.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
