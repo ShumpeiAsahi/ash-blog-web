@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import fs from "fs";
 import matter from "gray-matter";
 import { Pagination } from "../../components/Pagination";
+import { PAGE_SIZE, range } from "../../libs/tools";
 
 type PageProps = {
   posts: {
@@ -22,11 +23,6 @@ type PathParams = {
     page: number;
   };
 };
-
-const PAGE_SIZE = 2;
-
-const range = (start: number, end: number) =>
-  [...Array(end - start + 1)].map((_, i) => start + i);
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync("posts");
@@ -96,8 +92,8 @@ const Page: React.FC<PageProps> = ({ posts, pages, current_page }) => {
             );
           })}
         </div>
+        <Pagination pages={pages} current_page={current_page} />
       </main>
-      <Pagination pages={pages} current_page={current_page} />
       <Footer />
     </div>
   );

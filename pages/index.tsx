@@ -5,6 +5,7 @@ import { Header } from "../components/Header";
 import fs from "fs";
 import matter from "gray-matter";
 import { Pagination } from "../components/Pagination";
+import { PAGE_SIZE, range } from "../libs/tools";
 
 type PageProps = {
   posts: {
@@ -13,8 +14,12 @@ type PageProps = {
       [key: string]: any;
     };
   }[];
+  pages: number[];
+  current_page: number;
 };
+
 export const getStaticProps = () => {
+  const current_page = 1;
   const files = fs.readdirSync("posts");
   const posts = ([] = files.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
@@ -22,10 +27,22 @@ export const getStaticProps = () => {
     const { data } = matter(fileContent);
     return { slug, data };
   }));
-  return { props: { posts } };
+
+  const pages = range(1, Math.ceil(posts.length / PAGE_SIZE));
+
+  const sortedPosts = posts.sort((postA, postB) =>
+    new Date(postA.data.date) > new Date(postB.data.date) ? -1 : 1
+  );
+
+  const slicedPosts = sortedPosts.slice(
+    PAGE_SIZE * (current_page - 1),
+    PAGE_SIZE * current_page
+  );
+
+  return { props: { posts: slicedPosts, pages, current_page } };
 };
 
-const Home: React.FC<PageProps> = ({ posts }) => {
+const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {
   return (
     <div>
       <Head>
@@ -55,6 +72,7 @@ const Home: React.FC<PageProps> = ({ posts }) => {
             );
           })}
         </div>
+        <Pagination pages={pages} current_page={current_page} />
       </main>
       <Footer />
     </div>

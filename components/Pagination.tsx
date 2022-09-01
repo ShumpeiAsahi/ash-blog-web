@@ -8,7 +8,7 @@ export const Pagination = (props: Props) => {
   return (
     <div>
       {props.pages.map((page) => (
-        <Link href={`/page/${page}`} key={page}>
+        <Link href={`${page == 1 ? "/" : `/page/${page}`}`} key={page}>
           <a className={`${props.current_page == page && "font-bold"}`}>
             {page}
           </a>
