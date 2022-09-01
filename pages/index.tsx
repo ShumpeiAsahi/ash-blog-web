@@ -56,7 +56,7 @@ const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {
         <div className="w-full md:w-8/12 mx-auto">
           <div>
             <h1 className="text-lg font-bold my-16 text-center">
-              人生は神ゲー
+              東京在住のエンジニアブログ
             </h1>
           </div>
           {posts.map((post) => {
