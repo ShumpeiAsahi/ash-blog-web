@@ -12,7 +12,7 @@ type CardProps = {
 export const Card = (props: CardProps) => {
   return (
     <Link href={`/articles/${props.slug}`}>
-      <a className="mx-4">
+      <a className="mx-4 ">
         <div>
           <p>{props.date}</p>
           <div>

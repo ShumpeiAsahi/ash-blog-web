@@ -27,7 +27,7 @@ export const Header = () => {
           </a>
         </Link>
         <button
-          className="inline-flex p-3 rounded lg:hidden text-stone-900 ml-auto outline-none"
+          className="inline-flex p-3 rounded md:hidden text-stone-900 ml-auto outline-none"
           onClick={handleClick}
         >
           <svg
@@ -45,24 +45,15 @@ export const Header = () => {
             />
           </svg>
         </button>
-        <div
-          className={`${
-            active ? "" : "hidden"
-          }   w-full lg:inline-flex lg:flex-grow lg:w-auto`}
-        >
-          <div className="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto">
-            <Link href="/">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center hover:bg-stone-600 hover:text-stone-900 ">
-                Home
-              </a>
-            </Link>
+        <div className={`w-full hidden md:inline-flex md:flex-grow md:w-auto`}>
+          <div className="md:inline-flex md:flex-row md:ml-auto md:w-auto w-full md:items-center items-start  flex flex-col md:h-auto">
             <Link href="/about">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center hover:bg-stone-600 hover:text-stone-900">
+              <a className="md:inline-flex md:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center hover:bg-stone-600 hover:text-stone-900">
                 About
               </a>
             </Link>
             <Link href="/terms">
-              <a className="lg:inline-flex lg:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center hover:bg-stone-600 hover:text-stone-900">
+              <a className="md:inline-flex md:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center hover:bg-stone-600 hover:text-stone-900">
                 Terms
               </a>
             </Link>
