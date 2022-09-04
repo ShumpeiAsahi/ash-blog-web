@@ -51,6 +51,7 @@ const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {
               技術について書いています。
             </p>
           </div>
+          <p className="text-2xl font-bold mt-20 mb-4">Latest Posts</p>
           {posts.map((post) => {
             return (
               <Card

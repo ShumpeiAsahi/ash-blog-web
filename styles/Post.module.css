@@ -7,6 +7,10 @@
   width: 100% !important;
   height: unset !important;
 }
+
+.post {
+  margin: 0 4px 16px 4px;
+}
 .post h2 {
   margin: 32px 4px 16px 4px;
   padding-top: 40px;

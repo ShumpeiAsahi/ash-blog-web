@@ -28,6 +28,7 @@ const Home: React.FC = () => {
               objectFit="contain"
             ></Image>
           </div>
+          <p className="text-center text-xl mt-8 mb-4">Ash / あさひ</p>
           <div className="flex justify-center">
             <div className="mx-3">
               <a
@@ -47,6 +48,23 @@ const Home: React.FC = () => {
                 <Logo logo="/github.svg" />
               </a>
             </div>
+          </div>
+          <div className="mt-16 mb-4 mx-4">
+            <p>1997年生まれのエンジニア。</p>
+            <br />
+            <p>【経歴】</p>
+            <p>
+              2021年4月 新卒入社したSIerでエンジニアとしてのキャリアをスタート。
+            </p>
+            <p>2022年5月 フリーランスになり、ソフトウェア企業で業務委託。</p>
+            <br />
+            <p>【保有スキル】</p>
+            <p>言語</p>
+            <p>TypeScript/Next/Kotlin/Vue/Ruby on Rails/PHP/Clojure</p>
+            <p>OS・インフラ</p>
+            <p>Ubuntu/RedHat/Docker/AWS/GCP</p>
+            <br />
+            <p>人生は神ゲーだ！</p>
           </div>
         </div>
       </main>

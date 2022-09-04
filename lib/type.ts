@@ -7,5 +7,5 @@ export type ArticleList = {
 
 export type Article = {
   content: string;
-  data: { [key: string]: any };
+  data: { [key: string]: string };
 };

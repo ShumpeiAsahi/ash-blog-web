@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import { Article, ArticleList } from "../../lib/type";
 
 export const getArticles = (): ArticleList => {
-  const files = fs.readdirSync("posts");
+  const files = getFiles();
   const posts = ([] = files.map((fileName) => {
     const slug = fileName.replace(/\.md$/, "");
     const fileContent = fs.readFileSync(`posts/${fileName}`, "utf-8");
