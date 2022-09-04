@@ -27,23 +27,16 @@ export const Header = () => {
           </a>
         </Link>
         <button
-          className="inline-flex p-3 rounded md:hidden text-stone-900 ml-auto outline-none"
+          className="inline-flex p-3 rounded md:hidden text-stone-900 ml-auto outline-none z-20"
           onClick={handleClick}
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          <Image
+            className="rounded-full"
+            src={`${active ? "/924_x_h.svg" : "/bars_24.svg"}`}
+            width={24}
+            height={24}
+            alt="logo"
+          ></Image>
         </button>
         <div className={`w-full hidden md:inline-flex md:flex-grow md:w-auto`}>
           <div className="md:inline-flex md:flex-row md:ml-auto md:w-auto w-full md:items-center items-start  flex flex-col md:h-auto">
@@ -60,6 +53,28 @@ export const Header = () => {
           </div>
         </div>
       </nav>
+      <div
+        className={`${
+          active ? "right-0" : "-right-full"
+        } fixed transition-all w-full h-screen top-0 z-10 bg-zinc-100 opacity-80`}
+      >
+        <ul className="mt-32">
+          <li className="text-center my-4">
+            <Link href="/about">
+              <a className="w-full px-3 py-2 rounded text-2xl text-stone-900 font-bold">
+                About
+              </a>
+            </Link>
+          </li>
+          <li className="text-center my-4">
+            <Link href="/terms">
+              <a className="w-full px-3 py-2 rounded text-2xl text-stone-900 font-bold">
+                Terms
+              </a>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };
