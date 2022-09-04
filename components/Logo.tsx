@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 
 type Props = {
   logo: string;
@@ -7,13 +7,11 @@ type Props = {
 export const Logo = (props: Props) => {
   return (
     <>
-      <Image
-        className={`${props.className} rounded-full`}
+      <img
         src={props.logo}
-        width={40}
-        height={40}
         alt="logo"
-      ></Image>
+        className={`${props.className} rounded-full h-10 w-10`}
+      />
     </>
   );
 };

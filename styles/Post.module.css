@@ -1,13 +1,3 @@
-.imageContainer span {
-  position: unset !important;
-}
-
-.image {
-  position: relative !important;
-  width: 100% !important;
-  height: unset !important;
-}
-
 .post {
   margin: 0 4px 16px 4px;
 }

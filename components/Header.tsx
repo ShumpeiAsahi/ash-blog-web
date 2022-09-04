@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { Logo } from "./Logo";
 import { BLOG_TITLE } from "../lib/env";
@@ -26,13 +26,11 @@ export const Header = () => {
           className="inline-flex p-3 rounded md:hidden text-stone-900 ml-auto outline-none z-20"
           onClick={handleClick}
         >
-          <Image
-            className="rounded-full"
+          <img
             src={`${active ? "/924_x_h.svg" : "/bars_24.svg"}`}
-            width={24}
-            height={24}
-            alt="logo"
-          ></Image>
+            alt="expand"
+            className="h-6 w-6"
+          />
         </button>
         <div className={`w-full hidden md:inline-flex md:flex-grow md:w-auto`}>
           <div className="md:inline-flex md:flex-row md:ml-auto md:w-auto w-full md:items-center items-start  flex flex-col md:h-auto">

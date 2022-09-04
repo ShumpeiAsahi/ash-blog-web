@@ -1,10 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import Image from "next/image";
-import styles from "../styles/About.module.css";
 import { Logo } from "../components/Logo";
 import { BLOG_TITLE } from "../lib/env";
+import { ProfileImage } from "../components/ProfileImage";
 
 const Home: React.FC = () => {
   return (
@@ -19,14 +19,8 @@ const Home: React.FC = () => {
       <main>
         <div className="w-full md:w-8/12 mx-auto">
           <h1 className="text-3xl font-bold mt-16 mb-4 mx-4">Profile</h1>
-          <div className={`${styles.imageContainer} w-1/3 my-12 mx-auto`}>
-            <Image
-              className={`${styles.image} rounded-full`}
-              src={"/logo.png"}
-              layout="fill"
-              alt="thumbnail"
-              objectFit="contain"
-            ></Image>
+          <div className="w-1/3 my-12 mx-auto">
+            <ProfileImage />
           </div>
           <p className="text-center text-xl mt-8 mb-4">あさひ</p>
           <div className="flex justify-center">
