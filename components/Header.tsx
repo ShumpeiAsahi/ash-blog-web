@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Logo } from "./Logo";
+import { BLOG_TITLE } from "../lib/env";
 
 export const Header = () => {
   const [active, setActive] = useState(false);
@@ -17,7 +18,7 @@ export const Header = () => {
           <a className="inline-flex items-center p-2 mr-4 ">
             <Logo logo="/logo.svg" />
             <span className="text-xl text-stone-900 font-bold uppercase tracking-wide ml-4">
-              人生は神ゲー
+              {BLOG_TITLE}
             </span>
           </a>
         </Link>
