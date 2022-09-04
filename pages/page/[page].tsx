@@ -3,7 +3,12 @@ import { Card } from "../../components/Card";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
-import { BLOG_DESCRIPTION, BLOG_SUBTITLE, BLOG_TITLE, PAGE_SIZE } from "../../lib/env";
+import {
+  BLOG_DESCRIPTION,
+  BLOG_SUBTITLE,
+  BLOG_TITLE,
+  PAGE_SIZE,
+} from "../../lib/env";
 import { postsSlice, postsSortsByDate, range } from "../../lib/tools";
 import { getArticles, getFiles } from "../api/Article";
 
@@ -71,16 +76,18 @@ const Page: React.FC<PageProps> = ({ posts, pages, current_page }) => {
               {BLOG_DESCRIPTION}
             </p>
           </div>
+          <p className="text-2xl font-bold mt-20 mb-12 mx-2">{`Page ${current_page}`}</p>
           {posts.map((post) => {
             return (
-              <Card
-                key={post.slug}
-                slug={post.slug}
-                title={post.data.title}
-                date={post.data.date}
-                description={post.data.description}
-                thumbnail={post.data.thumbnail}
-              />
+              <div key={post.slug} className="mb-16">
+                <Card
+                  slug={post.slug}
+                  title={post.data.title}
+                  date={post.data.date}
+                  description={post.data.description}
+                  thumbnail={post.data.thumbnail}
+                />
+              </div>
             );
           })}
           <Pagination pages={pages} current_page={current_page} />

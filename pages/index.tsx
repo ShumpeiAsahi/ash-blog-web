@@ -51,17 +51,18 @@ const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {
               技術について書いています。
             </p>
           </div>
-          <p className="text-2xl font-bold mt-20 mb-4">Latest Posts</p>
+          <p className="text-2xl font-bold mt-20 mb-12 mx-2">Latest Posts</p>
           {posts.map((post) => {
             return (
-              <Card
-                key={post.slug}
-                slug={post.slug}
-                title={post.data.title}
-                date={post.data.date}
-                description={post.data.description}
-                thumbnail={post.data.thumbnail}
-              />
+              <div key={post.slug} className="mb-16">
+                <Card
+                  slug={post.slug}
+                  title={post.data.title}
+                  date={post.data.date}
+                  description={post.data.description}
+                  thumbnail={post.data.thumbnail}
+                />
+              </div>
             );
           })}
           <Pagination pages={pages} current_page={current_page} />

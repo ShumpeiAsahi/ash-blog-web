@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
       <main>
         <div className="w-full md:w-8/12 mx-auto">
-          <h1 className="text-3xl font-bold mt-16 mb-4">Profile</h1>
+          <h1 className="text-3xl font-bold mt-16 mb-4 mx-4">Profile</h1>
           <div className={`${styles.imageContainer} w-1/3 my-12 mx-auto`}>
             <Image
               className={`${styles.image} rounded-full`}
@@ -28,7 +28,7 @@ const Home: React.FC = () => {
               objectFit="contain"
             ></Image>
           </div>
-          <p className="text-center text-xl mt-8 mb-4">Ash / あさひ</p>
+          <p className="text-center text-xl mt-8 mb-4">あさひ</p>
           <div className="flex justify-center">
             <div className="mx-3">
               <a

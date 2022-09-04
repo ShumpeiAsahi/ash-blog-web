@@ -12,24 +12,22 @@ type CardProps = {
 export const Card = (props: CardProps) => {
   return (
     <Link href={`/articles/${props.slug}`}>
-      <a className="mx-4 ">
+      <a>
         <div>
-          <p>{props.date}</p>
-          <div>
-            <span className="font-bold text-lg">{props.title}</span>
-            <div className={styles.imageContainer}>
-              <Image
-                className={styles.image}
-                src={
-                  props.thumbnail ? `${props.thumbnail}` : "/japanese-style.jpg"
-                }
-                layout="fill"
-                alt="thumbnail"
-                objectFit="contain"
-              ></Image>
-            </div>
+          <p className="mx-2 mb-2">{props.date}</p>
+          <span className="font-bold text-2xl mx-2">{props.title}</span>
+          <div className={styles.imageContainer}>
+            <Image
+              className={styles.image}
+              src={
+                props.thumbnail ? `${props.thumbnail}` : "/japanese-style.jpg"
+              }
+              layout="fill"
+              alt="thumbnail"
+              objectFit="cover"
+            ></Image>
           </div>
-          <p className="text-slate-500">{props.description}</p>
+          <p className="text-slate-500 mt-4 mx-2">{props.description}</p>
         </div>
       </a>
     </Link>

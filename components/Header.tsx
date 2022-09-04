@@ -56,7 +56,7 @@ export const Header = () => {
       >
         <ul className="mt-32">
           <li className="text-center my-4">
-            <Link href="/about">
+            <Link href="/profile">
               <a className="w-full px-3 py-2 rounded text-2xl text-stone-900 font-bold">
                 Profile
               </a>

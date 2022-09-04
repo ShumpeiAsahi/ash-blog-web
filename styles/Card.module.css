@@ -1,9 +1,11 @@
 .imageContainer span {
-    position: unset !important;
-  }
+  position: unset !important;
+  height: 160px !important;
+  margin-top: 8px !important;
+}
 
 .image {
   position: relative !important;
   width: 100% !important;
-  height: unset !important;
+  object-fit: cover;
 }
