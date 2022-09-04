@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { Logo } from "./Logo";
 
 export const Header = () => {
   const [active, setActive] = useState(false);
@@ -14,13 +15,7 @@ export const Header = () => {
       <nav className="flex items-center flex-wrap bg-white p-3 ">
         <Link href="/">
           <a className="inline-flex items-center p-2 mr-4 ">
-            <Image
-              className="rounded-full"
-              src="/logo.svg"
-              width={40}
-              height={40}
-              alt="logo"
-            ></Image>
+            <Logo logo="/logo.svg" />
             <span className="text-xl text-stone-900 font-bold uppercase tracking-wide ml-4">
               人生は神ゲー
             </span>
@@ -40,9 +35,9 @@ export const Header = () => {
         </button>
         <div className={`w-full hidden md:inline-flex md:flex-grow md:w-auto`}>
           <div className="md:inline-flex md:flex-row md:ml-auto md:w-auto w-full md:items-center items-start  flex flex-col md:h-auto">
-            <Link href="/about">
+            <Link href="/profile">
               <a className="md:inline-flex md:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center">
-                About
+                Profile
               </a>
             </Link>
             <Link href="/terms">
@@ -62,7 +57,7 @@ export const Header = () => {
           <li className="text-center my-4">
             <Link href="/about">
               <a className="w-full px-3 py-2 rounded text-2xl text-stone-900 font-bold">
-                About
+                Profile
               </a>
             </Link>
           </li>
