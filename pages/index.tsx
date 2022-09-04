@@ -1,19 +1,20 @@
 import Head from "next/head";
-import { Card } from "../components/Card";
+import { CardList } from "../components/CardList";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import { Pagination } from "../components/Pagination";
-import { BLOG_SUBTITLE, BLOG_TITLE, PAGE_SIZE } from "../lib/env";
+import {
+  BLOG_DESCRIPTION,
+  BLOG_SUBTITLE,
+  BLOG_TITLE,
+  PAGE_SIZE,
+} from "../lib/env";
 import { postsSlice, postsSortsByDate, range } from "../lib/tools";
+import { ArticleList } from "../lib/type";
 import { getArticles } from "./api/Article";
 
 type PageProps = {
-  posts: {
-    slug: string;
-    data: {
-      [key: string]: string;
-    };
-  }[];
+  posts: ArticleList;
   pages: number[];
   current_page: number;
 };
@@ -48,23 +49,11 @@ const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {
               {BLOG_SUBTITLE}
             </h1>
             <p className="text-slate-500 mb-16 text-center">
-              技術について書いています。
+              {BLOG_DESCRIPTION}
             </p>
           </div>
           <p className="text-2xl font-bold mt-20 mb-12 mx-2">Latest Posts</p>
-          {posts.map((post) => {
-            return (
-              <div key={post.slug} className="mb-16">
-                <Card
-                  slug={post.slug}
-                  title={post.data.title}
-                  date={post.data.date}
-                  description={post.data.description}
-                  thumbnail={post.data.thumbnail}
-                />
-              </div>
-            );
-          })}
+          <CardList posts={posts} />
           <Pagination pages={pages} current_page={current_page} />
         </div>
       </main>

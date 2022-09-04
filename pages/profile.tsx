@@ -2,11 +2,11 @@
 import Head from "next/head";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import { Logo } from "../components/Logo";
-import { BLOG_TITLE } from "../lib/env";
+import { BLOG_TITLE, GITHUB_URL, TWITTER_URL } from "../lib/env";
 import { ProfileImage } from "../components/ProfileImage";
+import { ProfileLink } from "../components/ProfileLink";
 
-const Home: React.FC = () => {
+const Profile: React.FC = () => {
   return (
     <div className="w-full md:w-8/12 mx-auto text-gray-800">
       <Head>
@@ -25,22 +25,10 @@ const Home: React.FC = () => {
           <p className="text-center text-xl mt-8 mb-4">あさひ</p>
           <div className="flex justify-center">
             <div className="mx-3">
-              <a
-                href="https://twitter.com/Asahishu712"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Logo logo="/twitter.svg" />
-              </a>
+              <ProfileLink url={TWITTER_URL}></ProfileLink>
             </div>
             <div className="mx-3">
-              <a
-                href="https://github.com/ShumpeiAsahi"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Logo logo="/github.svg" />
-              </a>
+              <ProfileLink url={GITHUB_URL}></ProfileLink>
             </div>
           </div>
           <div className="mt-16 mb-4 mx-4">
@@ -67,4 +55,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Profile;

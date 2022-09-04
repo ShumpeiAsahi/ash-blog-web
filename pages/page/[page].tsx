@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Card } from "../../components/Card";
+import { CardList } from "../../components/CardList";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
@@ -10,15 +10,11 @@ import {
   PAGE_SIZE,
 } from "../../lib/env";
 import { postsSlice, postsSortsByDate, range } from "../../lib/tools";
+import { ArticleList } from "../../lib/type";
 import { getArticles, getFiles } from "../api/Article";
 
 type PageProps = {
-  posts: {
-    slug: string;
-    data: {
-      [key: string]: string;
-    };
-  }[];
+  posts: ArticleList;
   pages: number[];
   current_page: number;
 };
@@ -77,19 +73,7 @@ const Page: React.FC<PageProps> = ({ posts, pages, current_page }) => {
             </p>
           </div>
           <p className="text-2xl font-bold mt-20 mb-12 mx-2">{`Page ${current_page}`}</p>
-          {posts.map((post) => {
-            return (
-              <div key={post.slug} className="mb-16">
-                <Card
-                  slug={post.slug}
-                  title={post.data.title}
-                  date={post.data.date}
-                  description={post.data.description}
-                  thumbnail={post.data.thumbnail}
-                />
-              </div>
-            );
-          })}
+          <CardList posts={posts} />
           <Pagination pages={pages} current_page={current_page} />
         </div>
       </main>
