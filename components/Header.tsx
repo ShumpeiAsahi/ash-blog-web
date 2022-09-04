@@ -41,12 +41,12 @@ export const Header = () => {
         <div className={`w-full hidden md:inline-flex md:flex-grow md:w-auto`}>
           <div className="md:inline-flex md:flex-row md:ml-auto md:w-auto w-full md:items-center items-start  flex flex-col md:h-auto">
             <Link href="/about">
-              <a className="md:inline-flex md:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center hover:bg-stone-600 hover:text-stone-900">
+              <a className="md:inline-flex md:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center">
                 About
               </a>
             </Link>
             <Link href="/terms">
-              <a className="md:inline-flex md:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center hover:bg-stone-600 hover:text-stone-900">
+              <a className="md:inline-flex md:w-auto w-full px-3 py-2 rounded text-stone-900 font-bold items-center justify-center">
                 Terms
               </a>
             </Link>

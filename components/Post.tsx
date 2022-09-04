@@ -5,12 +5,14 @@ import Image from "next/image";
 type Props = {
   title: string;
   content: string;
+  date: string;
   thumbnail?: string | null;
 };
 export const Post = (props: Props) => {
   return (
     <>
-      <h1 className="text-2xl font-bold">{props.title}</h1>
+      <p className="mt-8">{props.date}</p>
+      <h1 className="text-3xl font-bold my-4">{props.title}</h1>
       <div className={styles.imageContainer}>
         <Image
           className={styles.image}
