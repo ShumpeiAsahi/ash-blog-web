@@ -29,7 +29,7 @@ export const Card = (props: CardProps) => {
               ></Image>
             </div>
           </div>
-          <p>{props.description}</p>
+          <p className="text-slate-500">{props.description}</p>
         </div>
       </a>
     </Link>

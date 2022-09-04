@@ -2,16 +2,15 @@ import Head from "next/head";
 import { Card } from "../components/Card";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
-import fs from "fs";
-import matter from "gray-matter";
 import { Pagination } from "../components/Pagination";
-import { PAGE_SIZE, range } from "../libs/tools";
+import { PAGE_SIZE, postsSlice, postsSortsByDate, range } from "../lib/tools";
+import { getArticles } from "./api/Article";
 
 type PageProps = {
   posts: {
     slug: string;
     data: {
-      [key: string]: any;
+      [key: string]: string;
     };
   }[];
   pages: number[];
@@ -19,27 +18,16 @@ type PageProps = {
 };
 
 export const getStaticProps = () => {
-  const current_page = 1;
-  const files = fs.readdirSync("posts");
-  const posts = ([] = files.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fileContent = fs.readFileSync(`posts/${fileName}`, "utf-8");
-    const { data } = matter(fileContent);
-    return { slug, data };
-  }));
+  const currentPage = 1;
+  const posts = getArticles();
 
   const pages = range(1, Math.ceil(posts.length / PAGE_SIZE));
 
-  const sortedPosts = posts.sort((postA, postB) =>
-    new Date(postA.data.date) > new Date(postB.data.date) ? -1 : 1
-  );
+  const sortedPosts = postsSortsByDate(posts);
 
-  const slicedPosts = sortedPosts.slice(
-    PAGE_SIZE * (current_page - 1),
-    PAGE_SIZE * current_page
-  );
+  const slicedPosts = postsSlice(sortedPosts, PAGE_SIZE, currentPage);
 
-  return { props: { posts: slicedPosts, pages, current_page } };
+  return { props: { posts: slicedPosts, pages, current_page: currentPage } };
 };
 
 const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {
@@ -55,9 +43,12 @@ const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {
       <main>
         <div className="w-full md:w-8/12 mx-auto">
           <div>
-            <h1 className="text-lg font-bold my-16 text-center">
+            <h1 className="text-xl font-bold mt-16 mb-4 text-center">
               東京在住のエンジニアブログ
             </h1>
+            <p className="text-slate-500 mb-16 text-center">
+              技術について書いています。
+            </p>
           </div>
           {posts.map((post) => {
             return (

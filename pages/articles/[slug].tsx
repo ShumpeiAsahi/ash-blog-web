@@ -1,13 +1,11 @@
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { Post } from "../../components/Post";
-import fs from "fs";
-import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
+import { getArticle, getFiles } from "../api/Article";
 
 type PageProps = {
   content: string;
-  data: { [key: string]: any };
+  data: { [key: string]: string };
 };
 
 type PathParams = {
@@ -17,7 +15,7 @@ type PathParams = {
 };
 
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync("posts");
+  const files = getFiles();
   const paths = files.map((fileName) => ({
     params: {
       slug: fileName.replace(/\.md$/, ""),
@@ -30,12 +28,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = (paths: PathParams) => {
-  const file = fs.readFileSync(`posts/${paths.params.slug}.md`, "utf-8");
-  const { data, content } = matter(file);
-  const post = {
-    data: data,
-    content: content,
-  };
+  const post = getArticle(paths.params.slug);
   return { props: post };
 };
 

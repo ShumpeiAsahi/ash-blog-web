@@ -2,16 +2,20 @@ import Head from "next/head";
 import { Card } from "../../components/Card";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
-import fs from "fs";
-import matter from "gray-matter";
 import { Pagination } from "../../components/Pagination";
-import { PAGE_SIZE, range } from "../../libs/tools";
+import {
+  PAGE_SIZE,
+  postsSlice,
+  postsSortsByDate,
+  range,
+} from "../../lib/tools";
+import { getArticles, getFiles } from "../api/Article";
 
 type PageProps = {
   posts: {
     slug: string;
     data: {
-      [key: string]: any;
+      [key: string]: string;
     };
   }[];
   pages: number[];
@@ -25,7 +29,7 @@ type PathParams = {
 };
 
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync("posts");
+  const files = getFiles();
   const count = files.length;
 
   const paths = range(1, Math.ceil(count / PAGE_SIZE)).map((i) => ({
@@ -39,27 +43,16 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = (paths: PathParams) => {
-  const current_page = paths.params.page;
-  const files = fs.readdirSync("posts");
-  const posts = ([] = files.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fileContent = fs.readFileSync(`posts/${fileName}`, "utf-8");
-    const { data } = matter(fileContent);
-    return { slug, data };
-  }));
+  const currentPage = paths.params.page;
+  const posts = getArticles();
 
   const pages = range(1, Math.ceil(posts.length / PAGE_SIZE));
 
-  const sortedPosts = posts.sort((postA, postB) =>
-    new Date(postA.data.date) > new Date(postB.data.date) ? -1 : 1
-  );
+  const sortedPosts = postsSortsByDate(posts);
 
-  const slicedPosts = sortedPosts.slice(
-    PAGE_SIZE * (current_page - 1),
-    PAGE_SIZE * current_page
-  );
+  const slicedPosts = postsSlice(sortedPosts, PAGE_SIZE, currentPage);
 
-  return { props: { posts: slicedPosts, pages, current_page } };
+  return { props: { posts: slicedPosts, pages, current_page: currentPage } };
 };
 
 const Page: React.FC<PageProps> = ({ posts, pages, current_page }) => {
