@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import ReactMarkdown from "react-markdown";
-import styles from "../styles/Post.module.css";
+import styles from "../styles/Markdown.module.css";
 
 type Props = {
   title: string;
