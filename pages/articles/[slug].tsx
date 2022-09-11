@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
           slug: name.replace(/\.md$/, ""),
         },
       }))
-    : { params: { slug: "" } };
+    : [{ params: { slug: "not_found" } }];
   return {
     paths,
     fallback: false,
