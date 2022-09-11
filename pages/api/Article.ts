@@ -4,10 +4,10 @@ import { CONTENT_REPO } from "../../lib/env";
 import { Article, ArticleList } from "../../lib/type";
 
 export const getArticles = (): ArticleList => {
-  const files = getFiles();
+  const files = getFiles()
   return ([] = files
     ? files
-        .filter((file) => file.isFile())
+        .filter((file) => file.isFile() && file.name != ".git")
         .map(({ name }) => {
           const slug = name.replace(/\.md$/, "");
           const fileContent = fs.readFileSync(
