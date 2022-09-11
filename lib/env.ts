@@ -1,4 +1,4 @@
-export const PAGE_SIZE = 5;
+export const PAGE_SIZE = 3;
 
 export const BLOG_TITLE = "人生は神ゲー";
 
