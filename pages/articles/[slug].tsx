@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
           slug: name.replace(/\.md$/, ""),
         },
       }))
-    : [{ params: { slug: "not_found" } }];
+    : [{ params: { slug: "" } }];
   return {
     paths,
     fallback: false,
@@ -32,7 +32,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = (paths: PathParams) => {
-  return { props: getArticle(paths.params.slug) };
+  const post = getArticle(paths.params.slug);
+  return { props: post };
 };
 
 const ArticlePage: React.FC<PageProps> = ({ content, data }) => {
