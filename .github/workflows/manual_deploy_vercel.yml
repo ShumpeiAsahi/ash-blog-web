@@ -21,7 +21,7 @@ jobs:
         with:
           repository: ShumpeiAsahi/ash-blog-store
           token: ${{ secrets.GH_PAT }}
-          path: posts
+          path: posts/ash-blog-store
 
       - name: Check repo
         run: ls posts -a
