@@ -4,10 +4,10 @@ import { CONTENT_REPO } from "../../lib/env";
 import { Article, ArticleList } from "../../lib/type";
 
 export const getArticles = (): ArticleList => {
-  const files = getFiles()
+  const files = getFiles();
   return ([] = files
     ? files
-        .filter((file) => file.isFile() && file.name != ".git")
+        .filter((file) => file.isFile())
         .map(({ name }) => {
           const slug = name.replace(/\.md$/, "");
           const fileContent = fs.readFileSync(
@@ -31,7 +31,7 @@ export const getArticle = (slug: string): Article => {
 
 export const getFiles = (): Dirent[] | undefined => {
   try {
-    return fs.readdirSync(`${CONTENT_REPO}`, { withFileTypes: true });
+    return fs.readdirSync(`${CONTENT_REPO}`, { withFileTypes: true }).filter((file) => file.name != ".git");
   } catch {
     return undefined;
   }
