@@ -19,17 +19,20 @@ type PageProps = {
   current_page: number;
 };
 
+const CURRENT_PAGE = 1;
+
 export const getStaticProps = () => {
-  const currentPage = 1;
   const posts = getArticles();
 
   const pages = range(1, Math.ceil(posts.length / PAGE_SIZE));
 
-  const sortedPosts = postsSortsByDate(posts);
+  const slicedPosts = postsSlice(
+    postsSortsByDate(posts),
+    PAGE_SIZE,
+    CURRENT_PAGE
+  );
 
-  const slicedPosts = postsSlice(sortedPosts, PAGE_SIZE, currentPage);
-
-  return { props: { posts: slicedPosts, pages, current_page: currentPage } };
+  return { props: { posts: slicedPosts, pages, current_page: CURRENT_PAGE } };
 };
 
 const Home: React.FC<PageProps> = ({ posts, pages, current_page }) => {

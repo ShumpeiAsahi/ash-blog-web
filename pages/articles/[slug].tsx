@@ -18,11 +18,13 @@ type PathParams = {
 
 export const getStaticPaths = async () => {
   const files = getFiles();
-  const paths = files.map((fileName) => ({
-    params: {
-      slug: fileName.replace(/\.md$/, ""),
-    },
-  }));
+  const paths = files
+    ? files.map(({ name }) => ({
+        params: {
+          slug: name.replace(/\.md$/, ""),
+        },
+      }))
+    : { params: {} };
   return {
     paths,
     fallback: false,
@@ -30,8 +32,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = (paths: PathParams) => {
-  const post = getArticle(paths.params.slug);
-  return { props: post };
+  return { props: getArticle(paths.params.slug) };
 };
 
 const ArticlePage: React.FC<PageProps> = ({ content, data }) => {

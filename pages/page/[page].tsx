@@ -27,7 +27,7 @@ type PathParams = {
 
 export const getStaticPaths = async () => {
   const files = getFiles();
-  const count = files.length;
+  const count = files ? files.length : 0;
 
   const paths = range(1, Math.ceil(count / PAGE_SIZE)).map((i) => ({
     params: { page: i.toString() },
@@ -45,9 +45,11 @@ export const getStaticProps = (paths: PathParams) => {
 
   const pages = range(1, Math.ceil(posts.length / PAGE_SIZE));
 
-  const sortedPosts = postsSortsByDate(posts);
-
-  const slicedPosts = postsSlice(sortedPosts, PAGE_SIZE, currentPage);
+  const slicedPosts = postsSlice(
+    postsSortsByDate(posts),
+    PAGE_SIZE,
+    currentPage
+  );
 
   return { props: { posts: slicedPosts, pages, current_page: currentPage } };
 };
