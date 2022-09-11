@@ -1,4 +1,4 @@
-name: Manually deploy my-next-app
+name: Manually deploy to vercel
 on: workflow_dispatch
 
 jobs:
