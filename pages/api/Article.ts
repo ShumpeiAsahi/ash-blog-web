@@ -1,16 +1,22 @@
-import fs from "fs";
+import fs, { Dirent } from "fs";
 import matter from "gray-matter";
 import { CONTENT_REPO } from "../../lib/env";
 import { Article, ArticleList } from "../../lib/type";
 
 export const getArticles = (): ArticleList => {
   const files = getFiles();
-  const posts = ([] = files.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, "");
-    const fileContent = fs.readFileSync(`${CONTENT_REPO}/${fileName}`, "utf-8");
-    const { data } = matter(fileContent);
-    return { slug, data };
-  }));
+  const posts = ([] = files
+    .filter((file) => file.isFile())
+    .map(({ name }) => {
+      const slug = name.replace(/\.md$/, "");
+      const fileContent = fs.readFileSync(
+        `${CONTENT_REPO}/${name}`,
+        "utf-8"
+      );
+
+      const { data } = matter(fileContent);
+      return { slug, data };
+    }));
   return posts;
 };
 
@@ -24,4 +30,5 @@ export const getArticle = (slug: string): Article => {
   return post;
 };
 
-export const getFiles = (): string[] => fs.readdirSync("posts");
+export const getFiles = (): Dirent[] =>
+  fs.readdirSync(`${CONTENT_REPO}`, { withFileTypes: true });
