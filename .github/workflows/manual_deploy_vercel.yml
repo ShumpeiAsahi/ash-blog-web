@@ -15,13 +15,16 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
-      
+
       - name: Clone MarkDown Repository
         uses: actions/checkout@v3
         with:
           repository: ShumpeiAsahi/ash-blog-store
           token: ${{ secrets.GH_PAT }}
           path: posts
+
+      - name: Check repo
+        run: ls posts -a
 
       - name: Build
         run: yarn build
