@@ -17,7 +17,7 @@ export const Header = () => {
         <Link href="/">
           <a className="inline-flex items-center p-2 mr-4 ">
             <Logo logo="/logo.svg" />
-            <span className="text-xl text-stone-900 font-bold uppercase tracking-wide ml-4">
+            <span className="text-xl text-stone-900 font-bold tracking-wide ml-4">
               {BLOG_TITLE}
             </span>
           </a>

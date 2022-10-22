@@ -23,9 +23,6 @@ jobs:
           token: ${{ secrets.GH_PAT }}
           path: posts/ash-blog-store
 
-      - name: Check repo
-        run: ls posts -a
-
       - name: Build
         run: yarn build
 

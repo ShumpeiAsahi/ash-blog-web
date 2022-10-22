@@ -38,7 +38,7 @@ const Profile: React.FC = () => {
             <p>
               2021年4月 新卒入社したSIerでエンジニアとしてのキャリアをスタート。
             </p>
-            <p>2022年5月 フリーランスになり、ソフトウェア企業で業務委託。</p>
+            <p>2022年5月 ソフトウェア企業で業務委託。</p>
             <br />
             <p>【保有スキル】</p>
             <p>言語</p>
@@ -46,7 +46,6 @@ const Profile: React.FC = () => {
             <p>OS・インフラ</p>
             <p>Ubuntu/RedHat/Docker/AWS/GCP</p>
             <br />
-            <p>人生は神ゲーだ！</p>
           </div>
         </div>
       </main>
