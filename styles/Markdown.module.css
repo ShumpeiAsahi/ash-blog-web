@@ -23,4 +23,5 @@
 .post p {
   margin: 32px 4px 16px 4px;
   font-size: 14px;
+  white-space: pre-wrap;
 }
