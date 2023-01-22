@@ -44,7 +44,7 @@ const Profile: React.FC = () => {
             <p>言語</p>
             <p>TypeScript/Next/Kotlin/Vue/Ruby on Rails/PHP/Clojure</p>
             <p>OS・インフラ</p>
-            <p>Ubuntu/RedHat/Docker/AWS/GCP</p>
+            <p>Ubuntu/Docker/Kubernetes/AWS/GCP</p>
             <br />
           </div>
         </div>
