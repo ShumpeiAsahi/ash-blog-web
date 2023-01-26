@@ -21,7 +21,7 @@ const Terms: React.FC = () => {
           <div className="w-1/3 my-12 mx-auto">
             <ProfileImage />
           </div>
-          <p className="text-center text-xl mt-8 mb-4">あさひ</p>
+          <p className="text-center text-xl mt-8 mb-4">ash</p>
           <div className="flex justify-center">
             <div className="mx-3">
               <ProfileLink url={TWITTER_URL}></ProfileLink>
