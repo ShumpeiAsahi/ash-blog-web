@@ -1,6 +1,6 @@
 import fs, { Dirent } from "fs";
 import matter from "gray-matter";
-import { CONTENT_REPO } from "../../lib/env";
+import { ABOUT_PATH, CONTENT_REPO } from "../../lib/env";
 import { Article, ArticleList } from "../../lib/type";
 
 export const getArticles = (): ArticleList => {
@@ -29,9 +29,20 @@ export const getArticle = (slug: string): Article => {
   };
 };
 
+export const getProfile = (): Article => {
+  const file = fs.readFileSync(`${ABOUT_PATH}/profile.md`, "utf-8");
+  const { data, content } = matter(file);
+  return {
+    data: data,
+    content: content,
+  };
+};
+
 export const getFiles = (): Dirent[] | undefined => {
   try {
-    return fs.readdirSync(`${CONTENT_REPO}`, { withFileTypes: true }).filter((file) => file.name != ".git");
+    return fs
+      .readdirSync(`${CONTENT_REPO}`, { withFileTypes: true })
+      .filter((file) => file.name != ".git");
   } catch {
     return undefined;
   }

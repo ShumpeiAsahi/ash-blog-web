@@ -11,3 +11,5 @@ export const GITHUB_URL = "https://github.com/ShumpeiAsahi";
 export const TWITTER_URL = "https://twitter.com/shumpeiasahi";
 
 export const CONTENT_REPO = "posts/ash-blog-store";
+
+export const ABOUT_PATH = "posts/about";
