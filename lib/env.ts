@@ -4,7 +4,7 @@ export const BLOG_TITLE = "ash.style";
 
 export const BLOG_SUBTITLE = "ashのブログ";
 
-export const BLOG_DESCRIPTION = "Web、ポケモン、趣味について書いています。";
+export const BLOG_DESCRIPTION = "技術ブログです。";
 
 export const GITHUB_URL = "https://github.com/ShumpeiAsahi";
 
